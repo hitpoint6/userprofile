@@ -29,6 +29,14 @@ const Form = function (props) {
       return;
     }
 
+    if (+age < 0) {
+      setError({
+        header: "Invalid Input",
+        body: "Age must be bigger than 0",
+      });
+      return;
+    }
+
     const newData = {
       id: Math.random.toString(),
       name: name,
@@ -53,7 +61,6 @@ const Form = function (props) {
           <label>Age</label>
           <input
             type="number"
-            min="0"
             mx="200"
             onChange={ageInputHandler}
           ></input>

@@ -1,5 +1,4 @@
 import Card from "./UI/Card";
-import classes from "./Users.module.css";
 
 const Users = function (props) {
   return (
