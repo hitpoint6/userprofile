@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Form from "./components/Form";
+import Users from "./components/Users";
+
+/*
+1. Build users
+2. Build Card
+3. Build form
+4. Build button
+5. Build modal
+*/
+
+const usersData = [{id: 1, name: "Kelvin", age: 35},
+ {id: 2, name: "Sarah", age: 30}]
 
 function App() {
+  const [users, setUsers] = useState(usersData);
+
+  const saveUserHandler = function(data){
+    // Use callback to ensure getting the lastest snapshot before update
+    setUsers(prevData =>
+      [data, ...prevData]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Form onSaveUser={saveUserHandler}/>
+      <Users users={users}/>
     </div>
   );
 }
